@@ -8,6 +8,7 @@ from sample import views
 
 
 urlpatterns = patterns('sample.views',
-        url(r'', views.MainPage, name='main'),
+        url(r'^$', views.main_page, name='main'),
+        url(r'^rooms/', views.rooms, name='rooms'),
 
 )

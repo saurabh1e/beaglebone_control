@@ -12,7 +12,16 @@ from django.contrib.auth.decorators import login_required
 import time
 from django.shortcuts import render_to_response, HttpResponseRedirect, redirect
 from django.http import HttpResponse, JsonResponse
+from sample.models import *
 
 
-def MainPage(request):
-    return HttpResponse("hello")
+def main_page(request):
+    context = RequestContext(request)
+    return render_to_response('base.html', context)
+
+def rooms(request):
+    print("gotcha!!")
+    context = RequestContext(request)
+    room = RoomID.objects.all()
+    context_dict = {"room": room}
+    return render_to_response('rooms.html', context_dict, context)
