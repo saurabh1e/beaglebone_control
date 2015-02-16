@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Bootply.com - Bootstrap Bootstrap 3 Admin</title>
+        <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
+        <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
+
+        <!-- CSS code from Bootply.com editor -->
+
+        <style type="text/css">
+            .navbar-static-top {
+  margin-bottom:20px;
+}
+
+i {
+  font-size:16px;
+}
+
+.nav > li > a {
+  color:#787878;
+}
+
+footer {
+  margin-top:20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  background-color:#efefef;
+}
+
+/* count indicator near icons */
+.nav>li .count {
+  position: absolute;
+  bottom: 12px;
+  right: 6px;
+  font-size: 9px;
+  background: rgba(51,200,51,0.55);
+  color: rgba(255,255,255,0.9);
+  line-height: 1em;
+  padding: 2px 4px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* indent 2nd level */
+.list-unstyled li > ul > li {
+   margin-left:10px;
+   padding:8px;
+}
+        </style>
+    </head>
+
+    <!-- HTML code from Bootply.com editor -->
+
+    <body  >
+
+        <!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Dashboard</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a href="#">My Profile</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+      </ul>
+    </div>
+  </div><!-- /container -->
+</div>
+<!-- /Header -->
+
+<!-- Main -->
+<div class="container-fluid">
+<div class="row">
+	<div class="col-sm-2">
+      <!-- Left column -->
+      <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+
+      <hr>
+
+      <ul class="list-unstyled">
+        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
+          <h5>Settings <i class="glyphicon glyphicon-chevron-down"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse in" id="userMenu">
+                <li class="active"> <a href="/"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Add Device</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Reminders</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Users</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+            </ul>
+        </li>
+        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
+          <h5>Controls <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+
+            <ul class="list-unstyled collapse" id="menu2">
+                <li><a href="/rooms/">Room Wise List</a>
+                </li>
+                <li><a href="#">Appliances Wise List</a>
+                </li>
+                <li><a href="#">Security</a>
+                </li>
+                <li><a href="#">Logs</a>
+                </li>
+                <li><a href="#">Alerts</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu3">
+          <h5>Media <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+
+            <ul class="list-unstyled collapse" id="menu3">
+                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Shared Files</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Personal Files</a></li>
+            </ul>
+        </li>
+      </ul>
+
+
+
+  	</div><!-- /col-3 -->
+
+    <div class="col-sm-10">
+
+      <!-- column 2 -->
+      <ul class="list-inline pull-right">
+         <li><a href="#"><i class="glyphicon glyphicon-cog"></i></a></li>
+         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-comment"></i><span class="count">3</span></a><ul class="dropdown-menu" role="menu"><li><a href="#">1. Is there a way..</a></li><li><a href="#">2. Hello, admin. I would..</a></li><li><a href="#"><strong>All messages</strong></a></li></ul></li>
+         <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
+         <li><a title="Add Widget" data-toggle="modal" href="#addWidgetModal"><span class="glyphicon glyphicon-plus-sign"></span> Add Widget</a></li>
+      </ul>
+      <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+
+      	<hr>
+        {% block main_body %}
+		<div class="row">
+
+
+
+            <!-- center left-->
+         	<div class="col-md-6">
+			  <div class="well">Reminders <span class="badge pull-right">3</span></div>
+
+              <hr>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading"><h4>System Stats</h4></div>
+                  <div class="panel-body">
+
+                    <small>Cpu Usage</small>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+                        <span class="sr-only">35% Complete</span>
+                      </div>
+                    </div>
+                    <small>Ram Usage</small>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                        <span class="sr-only">40% Complete</span>
+                      </div>
+                    </div>
+                    <small>Network Usage</small>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
+                        <span class="sr-only">87% Complete (warning)</span>
+                      </div>
+                    </div>
+
+                  </div><!--/panel-body-->
+              </div><!--/panel-->
+
+			  <hr>
+
+			  <!--tabs-->
+
+              <!--/tabs-->
+
+
+
+          	</div><!--/col-->
+        	<div class="col-md-6">
+				<div class="panel panel-default">
+                  <div class="panel-heading"><h4>Notices</h4></div>
+                  <div class="panel-body">
+
+                  <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    No new alert or notices
+                  </div>
+
+                  Alerts and Notices will Appear here                  <br><br>
+                  </div>
+              	</div>
+
+               </div><!--/panel-->
+
+			</div><!--/col-span-6-->
+        {% endblock%}
+
+      </div><!--/row-->
+
+      <hr>
+
+
+  	</div><!--/col-span-9-->
+</div>
+<!-- /Main -->
+
+
+<div class="modal" id="addWidgetModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add Widget</h4>
+      </div>
+      <div class="modal-body">
+        <p>Add a widget stuff here..</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dalog -->
+</div><!-- /.modal -->
+
+
+
+
+
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+        <script type='text/javascript' src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+        <!-- JavaScript jQuery code from Bootply.com editor  -->
+
+        <script type='text/javascript'>
+
+        $(document).ready(function() {
+
+            $(".alert").addClass("in").fadeOut(4500);
+
+/* swap open/close side menu icons */
+$('[data-toggle=collapse]').click(function(){
+  	// toggle icon
+  	$(this).find("i").toggleClass("glyphicon-chevron-right glyphicon-chevron-down");
+});
+
+        });
+
+        </script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-40413119-1', 'bootply.com');
+          ga('send', 'pageview');
+        </script>
+
+    </body>
+</html>

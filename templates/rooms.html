@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_body %}
+
+    {% for room in room %}
+    {{ room.id }}
+    {% endfor %}
+
+{%  endblock %}
