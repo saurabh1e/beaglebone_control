@@ -20,7 +20,7 @@ DATABASE_PATH = os.path.join(PROJECT_PATH, 'myblog.db')
 #STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__),'static'),)
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static', 'root')
 
 print("Settings directory:", BASE_DIR)
 print("Project root:", PROJECT_PATH)
@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sample'
+    'sample',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,7 +130,7 @@ TEMPLATE_DIRS = (
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'static','root')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static', 'root')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
