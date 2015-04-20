@@ -210,10 +210,10 @@ class NRF24:
             return True
 
         #HACK to detect GPIO lib type
-        if GPIO.wait_for_edge.func_code.co_argcount == 4:
-            return GPIO.wait_for_edge(self.irq_pin, GPIO.FALLING, timeout) == 1
-        else:
-            return GPIO.wait_for_edge(self.irq_pin, GPIO.FALLING) == 1
+        # if GPIO.wait_for_edge.func_code.co_argcount == 4:
+        #     return GPIO.wait_for_edge(self.irq_pin, GPIO.FALLING, timeout) == 1
+        # else:
+        return GPIO.wait_for_edge(self.irq_pin, GPIO.FALLING) == 1
 
     def read_register(self, reg, blen=1):
         buf = [NRF24.R_REGISTER | (NRF24.REGISTER_MASK & reg)]

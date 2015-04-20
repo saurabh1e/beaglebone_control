@@ -1,27 +1,60 @@
-from django.shortcuts import render
-from Adafruit_BBIO import *
-import random
-from django.template import RequestContext
-from django.shortcuts import render_to_response, redirect
-from django.http import JsonResponse
-from django.db import IntegrityError
-from django.core.exceptions import ObjectDoesNotExist
-from sample.models import *
-from datetime import datetime, timedelta
-from django.contrib.auth.decorators import login_required
-import time
-from django.shortcuts import render_to_response, HttpResponseRedirect, redirect
-from django.http import HttpResponse, JsonResponse
-from sample.models import *
+import json
 
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+from django.http import HttpResponse
+from sample.models import *
+from django.core import serializers
+import serial
+ser = serial.Serial(port="dev/ttyUSB0", baudrate=57600)
 
 def main_page(request):
     context = RequestContext(request)
-    return render_to_response('base.html', context)
+    return render_to_response('homepage.html', context)
+
 
 def rooms(request):
-    print("gotcha!!")
+    print('gotcha!!')
     context = RequestContext(request)
     room = RoomID.objects.all()
-    context_dict = {"room": room}
-    return render_to_response('rooms.html', context_dict, context)
+    rooms = serializers.serialize('json', room)
+    return HttpResponse(json.dumps(rooms), content_type='application/json')
+
+
+def appliances(request):
+    print('gotcha!!')
+    context = RequestContext(request)
+    app = Appliances.objects.order_by('roomid').all()
+    a = [{'name': a.name, 'id': a.id, 'status': a.status, 'roomid': a.roomid.name} for a in app]
+    return HttpResponse(json.dumps(a), content_type='application/json')
+
+
+def wireless(request):
+    print('gotcha!!')
+    context = RequestContext(request)
+    wireless = Wireless.objects.all()
+    wls = serializers.serialize('json', wireless)
+    return HttpResponse(json.dumps(wls), content_type='application/json')
+
+
+def toggle(request, t_id):
+    context = RequestContext(request)
+    appliance = Appliances.objects.get(id=t_id)
+    if t_id == 1:
+        ser.write('1')
+    if request.method == 'PUT':
+        data = json.loads(request.body)
+        print data['status']
+        if data['status']:
+            appliance.status = bool(1)
+            appliance.save()
+            print ("here 1")
+            return HttpResponse(json.dumps("saved"), 200)
+        else:
+            appliance.status = bool(0)
+            appliance.save()
+            print ("here 2")
+            return HttpResponse(json.dumps("saved"), 200)
+    return HttpResponse(json.dumps("unsuccessful"), 403)
+
+

@@ -5,7 +5,7 @@ from sample.models import *
 
 
 class ApplianceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'wireless', 'roomid')
+    list_display = ('id', 'name', 'roomid')
 
 
 class WirelessAdmin(admin.ModelAdmin):

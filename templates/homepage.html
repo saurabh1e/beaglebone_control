@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/my.js"></script>
+    <title></title>
+</head>
+<body>
+
+<script type="text/template" id="list">
+    <div class="col-md-3">
+        <%=name%><br>
+        <%=roomid%><br>
+        <input type="button" class="remove" id="<%=name.replace(/( )/gi, '__')%>" value="<% if ( status ){ %> ON <% } else { %> OFF <% } %>" />
+        <hr>
+    </div>
+</script>
+
+<h4>List of users</h4>
+    <div id="listing">
+    </div>
+
+<script type="text/template" id="user-button">
+
+</script>
+
+<script type="text/javascript">
+    Appliance = Backbone.Model.extend({
+        urlRoot: '/appliances/',
+        defaults: {
+            id: '',
+            name: '',
+            status: '',
+            room: ''
+        }
+    });
+
+        Appliances = Backbone.Collection.extend({
+        model: Appliance,
+        url: '/appliances/',
+    });
+    var appliances = new Appliances();
+
+</script>
+
+<script type="text/javascript">
+
+    Apps = Backbone.View.extend({
+        template : _.template($("#list").html()),
+
+        initialize: function(){
+            this.collection.fetch({async: false}).done();
+            this.process();
+            return this;
+        },
+
+        events: {
+        },
+
+        process: function(){
+            var htmlout = '';
+            this.collection.each(function(app){
+                template = _.template($("#list").html());
+                var htmloutput = template(app.toJSON());
+                tagName = '#listing';
+                $el= $(this.tagName);
+                var r = document.getElementById(app.toJSON().roomid.replace(/ /g, ""));
+                if (r){
+                    htmlout = htmloutput + htmlout;
+                    var div = document.getElementById(app.toJSON().roomid.replace(/ /g, ""));
+                    div.innerHTML = htmlout;
+                }
+                else{
+                    htmlout = '';
+                    var div = document.getElementById("listing");
+                    var child = document.createElement('div');
+                    child.id = app.toJSON().roomid.replace(/ /g, "");
+                    child.className = 'col-md-12';
+                    child.innerHTML = htmloutput;
+                    div.appendChild(child);
+                    htmlout = htmloutput + htmlout;
+                }
+
+            });
+        },
+
+        render: function(app){
+            template = _.template($("#list").html());
+            var htmloutput = template(app.toJSON());
+            this.$el.append(htmloutput);
+        }
+    });
+
+    var apps = new Apps({ collection: appliances, el:$("#listing") });
+</script>
+
+{#<script type="text/javascript">#}
+{##}
+{#    AddModel = Backbone.View.extend({#}
+{#        template : _.template($('#user-button').html()),#}
+{##}
+{#        initialize: function(){#}
+{##}
+{#        },#}
+{##}
+{#        events: {#}
+{#            "click #add-user": "showprompt",#}
+{#        },#}
+{##}
+{#        showprompt: function(){#}
+{##}
+{#            this.input = this.$('#name');#}
+{#            this.input2 = this.$('#email');#}
+{##}
+{#            var new_user_name = this.input.val();//prompt("Enter Name");#}
+{#            var new_user_email = this.input2.val();//('#email');#}
+{#            if (new_user_email!= null && new_user_email != ''){#}
+{##}
+{#                var new_user = new UserModel();#}
+{#                new_user.set('name', new_user_name);#}
+{#                new_user.set('email', new_user_email);#}
+{#                new_user.save(new_user,{#}
+{#                    success: function(){#}
+{#                        console.log("here");#}
+{#                        users.render(new_user);#}
+{#                        userdata.fetch({async: false});#}
+{#                        userdata.sync('read');#}
+{##}
+{#                    },#}
+{#                    error: function(){#}
+{#                      console.log("here 2");#}
+{##}
+{#                    },#}
+{#                    wait: true,#}
+{#                    async: false#}
+{#                });#}
+{##}
+{#            }#}
+{#            else{#}
+{#                return this;#}
+{#            }#}
+{#            return this;#}
+{##}
+{#        },#}
+{##}
+{#        render: function(){#}
+{##}
+{#            var htmloutput = this.template();#}
+{#            this.$el.append(htmloutput+'<br>');#}
+{#            return this;#}
+{##}
+{#        }#}
+{#    });#}
+{##}
+{#    var add_user = new AddModel({el:$('#user_button')});#}
+{##}
+{#</script>#}
+
+
+
+<script type="text/javascript">
+
+    Toggle = Backbone.View.extend({
+        initialize: function(){
+            return this;
+
+        },
+        events: {
+
+            "click input.remove": "delete"
+        },
+
+        delete: function(id){
+            var app = this.collection.findWhere({name: id.target.id.replace(/__/g, ' ')});
+            tagName = ('#')+id.target.id;
+            $el = $(tagName);
+            var stat = app.get('status');
+            console.log(stat);
+            if (stat == false){
+                app.set('status', true)
+            }
+            else{
+                app.set('status', false)
+            }
+            app.save({
+                async: false,
+                success: function() {
+                    console.log("FFf");
+
+                },
+                error: function () {
+                    console.log("Ddddd");
+                }
+
+            });
+            if ($el.val() == 'ON') {
+                        $el.val('OFF');
+                    }
+            else {
+                $el.val('ON');
+            }
+        },
+        render: function(){
+        }
+    });
+
+    var toggle = new Toggle({collection: appliances, el:$('#listing')});
+
+
+</script>
+
+
+
+</body>
+</html>

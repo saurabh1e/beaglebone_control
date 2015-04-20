@@ -14,9 +14,19 @@ class RoomID(models.Model):
     wireless = models.ForeignKey(Wireless)
     name = models.CharField(max_length=20, blank=False, null=False)
 
+    def __str__(self):
+        return self.name
+
+    def __int__(self):
+        return self.id
+
+    def __unicode__(self):
+        return self.name
+
 
 class Appliances(models.Model):
     id = models.IntegerField(max_length=3, primary_key=True)
     name = models.CharField(max_length=25, unique=True)
-    wireless = models.OneToOneField(Wireless)
-    roomid = models.OneToOneField(RoomID)
+    status = models.BooleanField(default=False, blank=False)
+    roomid = models.ForeignKey(RoomID)
+
