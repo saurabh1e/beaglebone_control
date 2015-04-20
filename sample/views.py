@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from sample.models import *
 from django.core import serializers
 import serial
-ser = serial.Serial(port="dev/ttyUSB0", baudrate=57600)
 
 def main_page(request):
     context = RequestContext(request)
@@ -41,6 +40,7 @@ def toggle(request, t_id):
     context = RequestContext(request)
     appliance = Appliances.objects.get(id=t_id)
     if t_id == 1:
+        ser = serial.Serial(port="dev/ttyUSB0", baudrate=57600)
         ser.write('1')
     if request.method == 'PUT':
         data = json.loads(request.body)
